@@ -1,0 +1,85 @@
+{
+  "name": "@codingapi/flow-mobile",
+  "version": "0.0.1",
+  "description": "A UI Framework built with React and TypeScript",
+  "keywords": [
+    "ui",
+    "framework",
+    "react",
+    "typescript"
+  ],
+  "homepage": "https://github.com/codingapi/flow-mobile",
+  "bugs": {
+    "url": "https://github.com/codingapi/flow-mobile/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codingapi/flow-mobile.git"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "license": "Apache-2.0",
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
+  },
+  "dependencies": {
+    "@ant-design/pro-components": "^2.8.7",
+    "@codingapi/ui-framework": "^0.0.12",
+    "@logicflow/core": "^2.0.5",
+    "@logicflow/extension": "^2.0.9",
+    "@reduxjs/toolkit": "^2.2.7",
+    "moment": "^2.30.1",
+    "react-markdown": "^10.0.0",
+    "react-redux": "^9.1.2",
+    "remark-gfm": "^4.0.1"
+  },
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "yarn clean && rollup -c --bundleConfigAsCjs",
+    "push": "yarn build && yarn publish --access public"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@rollup/plugin-alias": "^5.1.1",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "postcss": "^8.4.32",
+    "rollup": "^4.9.1",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "sass": "^1.87.0",
+    "typescript": "^5.6.2"
+  }
+}
