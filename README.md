@@ -1,3 +1,4 @@
+[![npm](https://img.shields.io/npm/v/@codingapi/flow-mobile.svg)](https://www.npmjs.com/package/@codingapi/flow-mobile)
 # Flow-Mobile
 
 基于Mobile的流程引擎
