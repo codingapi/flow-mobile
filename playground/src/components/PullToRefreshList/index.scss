@@ -1,0 +1,9 @@
+$body-background-color: #e6e7ea;
+
+.mobile-list{
+  background-color: $body-background-color;
+
+  .adm-infinite-scroll{
+    padding: 8px !important;
+  }
+}

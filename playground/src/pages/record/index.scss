@@ -1,0 +1,70 @@
+
+$flow-tabs-height: 45px;
+// 主题颜色
+$theme-primary-color: #4a79d8;
+// 背景颜色
+$body-background-color: #e6e7ea;
+// header颜色
+$header-background-color: white;
+// FormPlaceholder颜色
+$from-placeholder-color: #c4c4c4;
+// 导航栏的高度
+$page-header-height: 50px;
+// Footer栏的高度
+$page-footer-height: 50px;
+// 页面内容区域的高度
+$page-content-height: calc(100vh - #{$page-header-height} - #{$page-footer-height});
+// 标题字体大小
+$title-font-size: 16px;
+// 内容字体大小
+$content-font-size:14px;
+
+.flow-todo-content {
+
+}
+
+.flow-todo-tabs {
+  height: $flow-tabs-height;
+  background-color: white;
+}
+
+.flow-todo-list {
+  height: calc(100vh - $page-header-height - $flow-tabs-height);
+  overflow: auto;
+}
+
+.flow-todo-item {
+  background-color: white;
+  margin-top: 2px;
+  position: relative;
+
+  .flow-todo-item-content {
+    padding: 15px;
+
+    .flow-todo-item-title {
+      font-size: $title-font-size;
+      align-items: center;
+    }
+
+    .flow-todo-item-attr {
+      font-size: $content-font-size;
+      display: flex;
+      margin-top: 10px;
+
+      .flow-todo-item-attr-title {
+        flex: 1;
+      }
+
+      .flow-todo-item-attr-content {
+        flex: 4;
+      }
+    }
+  }
+
+  .flow-todo-item-arrow {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+  }
+
+}
