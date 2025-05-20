@@ -1,7 +1,7 @@
 import React, {createContext, useEffect} from "react";
 import {Provider, useDispatch, useSelector} from "react-redux";
 import {FlowReduxState, flowStore, initState, updateState} from "../store";
-import {FlowViewProps} from "@codingapi/ui-framework";
+import {FlowViewProps, ThemeConfig, ThemeProvider, ThemeProviderContext} from "@codingapi/ui-framework";
 import {Skeleton} from "antd-mobile";
 import {FlowRecordContext} from "../domain";
 import {FlowEventContext} from "../domain";
@@ -51,7 +51,7 @@ const $FlowView: React.FC<FlowViewProps> = (props) => {
             return;
         }
         if (props.workCode) {
-            FlowApiContent.getInstance().getDetailByWorkCode( props.workCode).then(res => {
+            FlowApiContent.getInstance().getDetailByWorkCode(props.workCode).then(res => {
                 if (res && res.success) {
                     setData(res.data);
                 }
@@ -61,14 +61,14 @@ const $FlowView: React.FC<FlowViewProps> = (props) => {
     }
 
     useEffect(() => {
-        if(data){
+        if (data) {
             const dataVersion = Math.random();
-            dispatch(updateState({dataVersion:dataVersion}));
+            dispatch(updateState({dataVersion: dataVersion}));
         }
     }, [data]);
 
     useEffect(() => {
-        return ()=>{
+        return () => {
             dispatch(initState());
         }
     }, []);
@@ -97,10 +97,16 @@ const $FlowView: React.FC<FlowViewProps> = (props) => {
 }
 
 export const FlowView: React.FC<FlowViewProps> = (props) => {
+    const themeContext = React.useContext(ThemeProviderContext);
+
+    const theme = themeContext?.getTheme() || {} as ThemeConfig;
+
     return (
-        <Provider store={flowStore}>
-            <$FlowView  {...props} />
-        </Provider>
+        <ThemeProvider theme={theme}>
+            <Provider store={flowStore}>
+                <$FlowView  {...props} />
+            </Provider>
+        </ThemeProvider>
     )
 }
 

@@ -1,3 +1,18 @@
+:root {
+  --primary-color: #0b43e3;
+  --body-background-color: #fdfdfd;
+
+  --content-font-size-large: 24px;
+  --content-font-size-middle: 16px;
+  --content-font-size-small: 12px;
+
+  --content-font-size: var(--content-font-size-middle);
+}
+
+:root:root{
+  --adm-color-primary: var(--primary-color);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

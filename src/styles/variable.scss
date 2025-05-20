@@ -1,0 +1,31 @@
+// 主题颜色
+$theme-primary-color: var(--primary-color, #4a79d8);
+// 背景颜色
+$body-background-color: var(--body-background-color, #fdfdfd);
+// 内容字体大小
+$content-font-size:var(--content-font-size, 12px);
+// 标题字体大小
+$title-font-size: var(--content-font-size-middle, 16px);
+
+// header颜色
+$header-background-color: var(--header-background-color, white);
+// FormPlaceholder颜色
+$from-placeholder-color: var(--from-placeholder-color, #c4c4c4);
+// 导航栏的高度
+$page-header-height: var(--page-header-height, 50px);
+// Footer栏的高度
+$page-footer-height: var(--page-footer-height, 50px);
+// 页面内容区域的高度
+$page-content-height: calc(100vh - #{$page-header-height} - #{$page-footer-height});
+// 流程详情footer的高度
+$flow-footer-height: var(--flow-footer-height, 80px);
+
+
+/* 抄送节点的颜色 */
+$flow-circulate-color: var(--flow-circulate-color,#61aa1f);
+/* 流程节点的颜色 */
+$flow-node-color: var(--flow-node-color,#6855ef);
+/* 结束节点的颜色 */
+$flow-over-color: var(--flow-over-color,#ea3f21);
+/* 开始节点的颜色 */
+$flow-start-color: var(--flow-start-color,#b1ad30);
