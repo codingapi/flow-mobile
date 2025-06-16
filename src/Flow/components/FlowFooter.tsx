@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import {ActionSheet, Button} from "antd-mobile";
+import {ActionSheet, Button, Modal} from "antd-mobile";
 import {FlowViewReactContext} from "../view";
 import {useSelector} from "react-redux";
 import {FlowReduxState} from "../store";
@@ -30,8 +30,13 @@ export const FlowFooter: React.FC<FlowFooterProps> = (props) => {
                 <Button
                     color={"default"}
                     className={"flow-view-footer-button"}
-                    onClick={() => {
-                        flowButtonClickContext?.handlerRecall();
+                    onClick={async () => {
+                        const result = await Modal.confirm({
+                            content: '确认要撤回流程吗？',
+                        })
+                        if (result) {
+                            flowButtonClickContext?.handlerRecall();
+                        }
                     }}
                 >
                     撤回
