@@ -85,6 +85,20 @@ export class FlowRecordContext {
         return historyRecords.filter((item: any) => item.nodeCode === code);
     }
 
+    // 当前节点是否可以撤回
+    isWithdraw(){
+        const historyRecords = this.data.historyRecords || [];
+        const currentRecord = this.data.flowRecord;
+        if(currentRecord && historyRecords.length>0){
+            const currentId = currentRecord.id;
+            const preRecord = historyRecords.find((item:any)=>item.preId===currentId);
+            if(preRecord){
+                return preRecord.flowType === 'TODO';
+            }
+        }
+        return false;
+    }
+
     // 获取当前节点的流程图
     getFlowSchema = () => {
         if (this.data.flowWork.schema) {

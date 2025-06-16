@@ -24,6 +24,31 @@ export const FlowFooter: React.FC<FlowFooterProps> = (props) => {
 
     const style = contentHiddenVisible ? {"display":"none"} : {};
 
+    if(flowRecordContext?.isWithdraw()){
+        return (
+            <div className={"flow-view-footer"} style={style}>
+                <Button
+                    color={"default"}
+                    className={"flow-view-footer-button"}
+                    onClick={() => {
+                        flowButtonClickContext?.handlerRecall();
+                    }}
+                >
+                    撤回
+                </Button>
+
+                <Button
+                    color={"default"}
+                    className={"flow-view-footer-button"}
+                    onClick={() => {
+                        props.closeFlowView();
+                    }}
+                >
+                    关闭
+                </Button>
+            </div>
+        )
+    }
     if(flowRecordContext?.isEditable()){
         return (
             <div className={"flow-view-footer"} style={style}>
