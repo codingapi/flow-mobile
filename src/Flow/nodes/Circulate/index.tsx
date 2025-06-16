@@ -20,6 +20,7 @@ type CirculateProperties = {
     timeout: number;
     settingVisible?: boolean;
     state?: NodeState;
+    records?: any[];
 }
 
 interface CirculateProps {

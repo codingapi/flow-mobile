@@ -20,6 +20,7 @@ type OverProperties = {
     timeout:number;
     settingVisible?: boolean;
     state?: NodeState;
+    records?: any[];
 }
 
 interface OverProps {

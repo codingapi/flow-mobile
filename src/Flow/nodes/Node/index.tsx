@@ -20,6 +20,7 @@ type NodeProperties = {
     timeout: number;
     settingVisible?: boolean;
     state?: NodeState;
+    records?: any[];
 }
 
 interface NodeProps {

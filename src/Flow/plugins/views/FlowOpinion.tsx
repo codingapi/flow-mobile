@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import {FlowViewReactContext} from "../view";
+import {FlowViewReactContext} from "../../view";
 import moment from "moment";
 
 

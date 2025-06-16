@@ -79,6 +79,12 @@ export class FlowRecordContext {
         return this.data.flowRecord;
     }
 
+    // 获取当前节点的历史记录
+    getHistoryRecordsByNodeCode = (code: string) => {
+        const historyRecords = this.data.historyRecords || [];
+        return historyRecords.filter((item: any) => item.nodeCode === code);
+    }
+
     // 获取当前节点的流程图
     getFlowSchema = () => {
         if (this.data.flowWork.schema) {
@@ -87,6 +93,7 @@ export class FlowRecordContext {
             for (const node of schema.nodes) {
                 node.properties.settingVisible = false;
                 node.properties.state = this.getNodeState(node.properties.code);
+                node.properties.records = this.getHistoryRecordsByNodeCode(node.properties.code);
             }
             return schema;
         }

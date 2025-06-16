@@ -20,6 +20,7 @@ type StartProperties = {
     timeout: number;
     settingVisible?: boolean;
     state?: NodeState;
+    records?: any[];
 }
 
 interface StartProps {

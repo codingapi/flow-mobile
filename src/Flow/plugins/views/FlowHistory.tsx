@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import {FlowViewReactContext} from "../view";
+import {FlowViewReactContext} from "../../view";
 import {Descriptions} from "@codingapi/form-mobile";
 import {FormField} from "@codingapi/ui-framework";
 import moment from "moment";

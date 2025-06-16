@@ -1,14 +1,18 @@
 import React, {useContext, useEffect} from "react";
-import {Divider, Tabs} from "antd-mobile";
-import {FlowFormViewProps} from "@codingapi/ui-framework";
+import {Tabs} from "antd-mobile";
+import {
+    ComponentBus,
+    FlowFormViewProps,
+    FlowViewChartPropsKey,
+    FlowViewOpinionPropsKey,
+    FlowViewRecordPropsKey
+} from "@codingapi/ui-framework";
 import {FlowViewReactContext} from "../view";
-import {FlowHistory} from "../components";
-import {FlowFormOpinion} from "../components";
 import {useSelector} from "react-redux";
 import {FlowReduxState} from "../store";
-import {FlowChart} from "../components/FlowChart";
-import {FlowHistoryLine} from "../components";
-import {FlowOpinion} from "../components";
+import DefaultFlowViewOpinionView from "../plugins/DefaultFlowViewOpinionView";
+import DefaultFlowViewRecordView from "../plugins/DefaultFlowViewRecordView";
+import DefaultFlowViewChartView from "../plugins/DefaultFlowViewChartView";
 
 export const FlowContent= () => {
     const flowViewReactContext = useContext(FlowViewReactContext);
@@ -23,6 +27,11 @@ export const FlowContent= () => {
     const opinionVisible = useSelector((state: FlowReduxState) => state.flow.opinionVisible);
     const dataVersion = useSelector((state: FlowReduxState) => state.flow.dataVersion);
     const contentHiddenVisible = useSelector((state: FlowReduxState) => state.flow.contentHiddenVisible);
+
+    const FlowViewOpinionView = ComponentBus.getInstance().getComponent(FlowViewOpinionPropsKey,DefaultFlowViewOpinionView)
+    const FlowViewRecordView = ComponentBus.getInstance().getComponent(FlowViewRecordPropsKey,DefaultFlowViewRecordView)
+    const FlowViewChartView = ComponentBus.getInstance().getComponent(FlowViewChartPropsKey,DefaultFlowViewChartView)
+
 
     useEffect(() => {
         if(!flowRecordContext?.isEditable()){
@@ -45,19 +54,19 @@ export const FlowContent= () => {
                         />
                     )}
 
-                    {opinionVisible && (
-                        <FlowFormOpinion/>
+                    {opinionVisible && FlowViewOpinionView && (
+                        <FlowViewOpinionView/>
                     )}
                 </Tabs.Tab>
                 <Tabs.Tab title='流程记录' key='record'>
-                    <FlowHistory/>
-                    <Divider>审批记录</Divider>
-                    <FlowOpinion/>
+                    {FlowViewRecordView && (
+                        <FlowViewRecordView/>
+                    )}
                 </Tabs.Tab>
                 <Tabs.Tab title='流程图' key='chart'>
-                    <FlowChart/>
-                    <Divider>流转历史</Divider>
-                    <FlowHistoryLine/>
+                    {FlowViewChartView && (
+                        <FlowViewChartView/>
+                    )}
                 </Tabs.Tab>
             </Tabs>
         </div>

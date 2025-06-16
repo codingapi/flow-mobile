@@ -20,6 +20,7 @@ import {
 import {Form} from "@codingapi/form-mobile";
 import {FlowContent, FlowFooter, FlowForm404, FlowResult} from "../components";
 import {FlowViewReactContext} from "../view";
+import DefaultPostponedFormView from "../plugins/DefaultPostponedFormView";
 
 
 interface FlowPageProps extends FlowViewProps {
@@ -47,7 +48,7 @@ export const FlowPage: React.FC<FlowPageProps> = (props) => {
     const FlowFormView = flowRecordContext.getFlowFormView() as React.ComponentType<FlowFormViewProps>;
 
     // 延期表单视图
-    const PostponedFormView = ComponentBus.getInstance().getComponent<PostponedFormProps>(PostponedFormViewKey);
+    const PostponedFormView = ComponentBus.getInstance().getComponent<PostponedFormProps>(PostponedFormViewKey,DefaultPostponedFormView);
     // 选人表单视图
     const UserSelectFormView = ComponentBus.getInstance().getComponent<UserSelectFormProps>(UserSelectFormViewKey);
 

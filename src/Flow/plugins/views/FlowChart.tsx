@@ -3,11 +3,11 @@ import '@logicflow/core/es/index.css';
 import '@logicflow/extension/lib/style/index.css';
 import {LogicFlow, Options} from "@logicflow/core";
 import {DndPanel, Menu, MiniMap, Snapshot} from "@logicflow/extension";
-import {FlowViewReactContext} from "../view";
-import {StartNodeConfig} from "../nodes";
-import {OverNodeConfig} from "../nodes";
-import {CirculateNodeConfig} from "../nodes";
-import {NodeNodeConfig} from "../nodes";
+import {FlowViewReactContext} from "../../view";
+import {StartNodeConfig} from "../../nodes";
+import {OverNodeConfig} from "../../nodes";
+import {CirculateNodeConfig} from "../../nodes";
+import {NodeNodeConfig} from "../../nodes";
 import EdgeType = Options.EdgeType;
 
 interface FlowChartProps {
