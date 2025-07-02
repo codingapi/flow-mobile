@@ -83,6 +83,13 @@ export class FlowButtonClickContext {
                 const userIds = operators.map((item: any) => {
                     return item.userId;
                 });
+
+                if(userIds.length===0){
+                    // 只有一个人时，也是直接提交
+                    this.handlerSubmit();
+                    return;
+                }
+
                 this.flowStateContext?.setUserSelectMode({
                     userSelectType: 'nextNodeUser',
                     multiple: true,
