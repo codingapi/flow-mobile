@@ -73,6 +73,13 @@ export class FlowButtonClickContext {
         const trySpecifySubmitHandler = ()=>{
             this.flowEventContext?.trySubmitFlow((res) => {
                 const operators = res.data.operators;
+                const flowNode = res.data.flowNode;
+                if(flowNode.code === 'over'){
+                    // 如果下一个节点是结束节点，则直接提交
+                    this.handlerSubmit();
+                    return;
+                }
+
                 const userIds = operators.map((item: any) => {
                     return item.userId;
                 });
