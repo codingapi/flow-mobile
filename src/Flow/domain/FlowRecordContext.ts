@@ -29,6 +29,24 @@ export class FlowRecordContext {
     }
 
 
+    // 获取历史的流程节点列表
+    getFlowHistoryNodeList = () => {
+        const historyRecords = this.data.historyRecords || [];
+        const historyNodeCodes:string[] = [];
+        for (const record of historyRecords) {
+            if (record.nodeCode && !historyNodeCodes.includes(record.nodeCode)) {
+                historyNodeCodes.push(record.nodeCode);
+            }
+        }
+        return historyNodeCodes.map((code: string) => {
+            const label = this.getNode(code)?.name || code;
+            return {
+                value: code,
+                label: label,
+            };
+        });
+    }
+
     // 获取节点的数据
     getNode = (code: string) => {
         if (this.data) {
@@ -98,6 +116,14 @@ export class FlowRecordContext {
         }
         return false;
     }
+
+
+    // 是否是流程管理
+    isFlowManager = () => {
+        const currentRecord = this.data.flowRecord;
+        return currentRecord?.currentOperator?.flowManager || false;
+    }
+
 
     // 获取当前节点的流程图
     getFlowSchema = () => {
@@ -227,6 +253,11 @@ export class FlowRecordContext {
             }
         }
         return false;
+    }
+
+    // 获取当前流程的工作编码
+    public getCurrentProcessId() {
+        return this.data.flowRecord?.processId || null;
     }
 
 }

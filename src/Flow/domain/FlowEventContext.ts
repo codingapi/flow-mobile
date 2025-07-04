@@ -129,6 +129,27 @@ export class FlowEventContext {
         })
     }
 
+
+    /**
+     * 作废流程
+     * @param callback 回调函数
+     */
+    voidedFlow = (callback?: (res: any) => void) => {
+        this.flowStateContext.setRequestLoading(true);
+        const body = {
+            processId: this.flowRecordContext.getCurrentProcessId()
+        };
+        FlowApiContent.getInstance().voidedFlow(body).then(res => {
+            if (res &&  res.success) {
+                if (callback) {
+                    callback(res);
+                }
+            }
+        }).finally(() => {
+            this.flowStateContext.setRequestLoading(false);
+        })
+    }
+
     /**
      * 保存流程
      * @param callback 回调函数
@@ -159,6 +180,29 @@ export class FlowEventContext {
             timeOut
         };
         FlowApiContent.getInstance().postponedFlow(body).then(res => {
+            if (res && res.success) {
+                if (callback) {
+                    callback(res);
+                }
+            }
+        }).finally(() => {
+            this.flowStateContext.setRequestLoading(false);
+        })
+    }
+
+
+    /**
+     * 退回节点
+     * @param backNode 延期时间
+     * @param callback 回调函数
+     */
+    backFlow(backNode: string, callback?: (res: any) => void) {
+        this.flowStateContext.setRequestLoading(true);
+        const body = {
+            processId: this.flowRecordContext.getCurrentProcessId(),
+            backNodeCode:backNode
+        };
+        FlowApiContent.getInstance().backFlow(body).then(res => {
             if (res && res.success) {
                 if (callback) {
                     callback(res);

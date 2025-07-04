@@ -68,6 +68,14 @@ export class FlowStateContext {
         this.updateState();
     }
 
+    setBackNodeVisible(visible: boolean) {
+        this.currentState = {
+            ...this.currentState,
+            backNodeVisible: visible
+        }
+        this.updateState();
+    }
+
     setUserSelectVisible(visible: boolean) {
         this.currentState = {
             ...this.currentState,

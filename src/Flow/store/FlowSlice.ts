@@ -18,6 +18,8 @@ export interface FlowStore {
     // 意见框展示状态
     opinionVisible: boolean;
 
+    // 选择退回节点窗口状态
+    backNodeVisible: boolean;
     // 延期时间窗口状态
     postponedVisible: boolean;
     // 选人窗口状态
@@ -50,6 +52,7 @@ export const flowSlice = createSlice<FlowStore, FlowStoreAction, "flow", {}>({
         result: null,
         contentHiddenVisible: false,
         postponedVisible: false,
+        backNodeVisible: false,
         opinionVisible: true,
         userSelectVisible: false,
         userSelectMode: null,
@@ -73,7 +76,9 @@ export const flowSlice = createSlice<FlowStore, FlowStoreAction, "flow", {}>({
             if (keys.includes('postponedVisible')) {
                 state.postponedVisible = action.payload.postponedVisible;
             }
-
+            if (keys.includes('backNodeVisible')) {
+                state.backNodeVisible = action.payload.backNodeVisible;
+            }
             if (keys.includes('userSelectMode')) {
                 state.userSelectVisible = true;
                 state.userSelectMode = action.payload.userSelectMode;

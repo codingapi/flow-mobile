@@ -28,6 +28,14 @@ export interface FlowApi{
     getDetailById: (id:string) => Promise<Response>;
     // 流程详情(根据工作流code)
     getDetailByWorkCode: (workCode:string) => Promise<Response>;
+
+    // 获取流程节点人员配置
+    getFlowStep: (recordId?:number,workCode?:string) => Promise<Response>;
+
+    // 退回流程
+    backFlow: (body:any) => Promise<Response>;
+    // 作废流程
+    voidedFlow: (body:any) => Promise<Response>;
 }
 
 export class FlowApiContent{
@@ -95,5 +103,17 @@ export class FlowApiContent{
 
     public getDetailByWorkCode = async (workCode:string)=>{
         return this.flowApi?.getDetailByWorkCode(workCode);
+    }
+
+    public getFlowStep = async (recordId?:number,workCode?:string)=>{
+        return this.flowApi?.getFlowStep(recordId,workCode);
+    }
+
+    public backFlow = async (body:any)=>{
+        return this.flowApi?.backFlow(body);
+    }
+
+    public voidedFlow = async (body:any)=>{
+        return this.flowApi?.voidedFlow(body);
     }
 }

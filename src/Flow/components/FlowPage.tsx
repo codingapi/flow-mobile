@@ -1,5 +1,7 @@
 import React, {useEffect} from "react";
 import {
+    BackFlowNodeViewKey,
+    BackFlowNodeViewProps,
     ComponentBus,
     FlowFormViewProps,
     FlowViewProps,
@@ -21,6 +23,7 @@ import {Form} from "@codingapi/form-mobile";
 import {FlowContent, FlowFooter, FlowForm404, FlowResult} from "../components";
 import {FlowViewReactContext} from "../view";
 import DefaultPostponedFormView from "../plugins/DefaultPostponedFormView";
+import DefaultBackFlowNodeView from "../plugins/DefaultBackFlowNodeView";
 
 
 interface FlowPageProps extends FlowViewProps {
@@ -47,6 +50,8 @@ export const FlowPage: React.FC<FlowPageProps> = (props) => {
     const flowButtonClickContext = new FlowButtonClickContext(flowEvenContext, flowStateContext);
     const FlowFormView = flowRecordContext.getFlowFormView() as React.ComponentType<FlowFormViewProps>;
 
+    // 流程退回节点选择视图
+    const BackFlowNodeView = ComponentBus.getInstance().getComponent<BackFlowNodeViewProps>(BackFlowNodeViewKey,DefaultBackFlowNodeView);
     // 延期表单视图
     const PostponedFormView = ComponentBus.getInstance().getComponent<PostponedFormProps>(PostponedFormViewKey,DefaultPostponedFormView);
     // 选人表单视图
@@ -105,6 +110,24 @@ export const FlowPage: React.FC<FlowPageProps> = (props) => {
                                             value: `${timeOut}小时`
                                         }
                                     ]
+                                })
+                            });
+                        }}
+                    />
+                )}
+
+                {BackFlowNodeView && (
+                    <BackFlowNodeView
+                        visible={currentState.backNodeVisible}
+                        setVisible={(visible: boolean) => {
+                            flowStateContext.setBackNodeVisible(visible);
+                        }}
+                        onFinish={(flowNode) => {
+                            flowEvenContext.backFlow(flowNode, (res) => {
+                                flowStateContext.setResult({
+                                    title: '流程已退回到该节点',
+                                    state: 'success',
+                                    closeable: true,
                                 })
                             });
                         }}
