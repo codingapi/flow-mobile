@@ -22,6 +22,7 @@ const LeaveForm: React.FC<FlowFormViewProps> = (props) => {
     useEffect(() => {
         // 设置表单数据
         if (props.dataVersion && props.data) {
+            console.log('dataVersion:', props.data);
             formInstance?.setFieldsValue({
                 ...props.data
             });
