@@ -27,13 +27,16 @@ const DefaultBackFlowNodeView:React.FC<BackFlowNodeViewProps> = (props)=>{
                     props.onFinish(values.backNode);
                 }}
             >
-                <FormSelect
+                <Form.Item
                     name={"backNode"}
                     label={"退回流程节点"}
-                    tooltip={"退回的流程节点，选择后流程将退回到该节点"}
-                    options={flowRecordContext?.getFlowHistoryNodeList()}
-                    validateFunction={ValidateUtils.validateNotEmpty}
-                />
+                    help={"退回的流程节点，选择后流程将退回到该节点"}
+                >
+                    <FormSelect
+                        options={flowRecordContext?.getFlowHistoryNodeList()}
+                        validateFunction={ValidateUtils.validateNotEmpty}
+                    />
+                </Form.Item>
             </Form>
         </Popup>
     )
