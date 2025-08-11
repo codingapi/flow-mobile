@@ -26,13 +26,12 @@ const DefaultFlowViewOpinionView:React.FC<FlowViewOpinionProps> = (props)=>{
                                 label:"审批意见",
                                 textAreaRows:2,
                                 required:true,
-                                validateFunction:async (content)=>{
-                                    const value = content.value;
-                                    if(value){
-                                        return [];
+                                rules:[
+                                    {
+                                        required: true,
+                                        message: "请输入审批意见"
                                     }
-                                    return ["请输入审批意见"];
-                                }
+                                ]
                             }
                         }
                     ]

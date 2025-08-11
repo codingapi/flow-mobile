@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import {BackFlowNodeViewProps, ValidateUtils} from "@codingapi/ui-framework";
+import {BackFlowNodeViewProps} from "@codingapi/ui-framework";
 import {FlowViewReactContext} from "../view";
 import {Form, FormSelect, Popup} from "@codingapi/form-mobile";
 
@@ -16,8 +16,8 @@ const DefaultBackFlowNodeView:React.FC<BackFlowNodeViewProps> = (props)=>{
             position='bottom'
             title={"流程退回节点选择"}
             bodyStyle={{height: '50vh'}}
-            onOk={async () => {
-                await formInstance.submit();
+            onOk={ () => {
+                 formInstance.submit();
             }}
         >
             <Form
@@ -30,11 +30,16 @@ const DefaultBackFlowNodeView:React.FC<BackFlowNodeViewProps> = (props)=>{
                 <Form.Item
                     name={"backNode"}
                     label={"退回流程节点"}
-                    help={"退回的流程节点，选择后流程将退回到该节点"}
+                    required={true}
+                    rules={[
+                        {
+                            required: true,
+                            message: "请选择退回流程节点"
+                        },
+                    ]}
                 >
                     <FormSelect
                         options={flowRecordContext?.getFlowHistoryNodeList()}
-                        validateFunction={ValidateUtils.validateNotEmpty}
                     />
                 </Form.Item>
             </Form>
