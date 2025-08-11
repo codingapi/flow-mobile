@@ -1,6 +1,6 @@
 {
   "name": "@codingapi/flow-mobile",
-  "version": "0.0.58",
+  "version": "0.0.60",
   "description": "A UI Framework built with React and TypeScript",
   "keywords": [
     "ui",
@@ -35,8 +35,8 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
-    "@codingapi/form-mobile": "^0.0.58",
-    "@codingapi/ui-framework": "^0.0.58",
+    "@codingapi/form-mobile": "^0.0.60",
+    "@codingapi/ui-framework": "^0.0.60",
     "@logicflow/core": "2.0.5",
     "@logicflow/extension": "2.0.9",
     "@reduxjs/toolkit": "^2.2.7",
